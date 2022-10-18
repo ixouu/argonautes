@@ -1,5 +1,4 @@
 const argonauteModel = require('../models/argonauteSchema');
-const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.addMember = async (req, res, next) => {
     try {
@@ -38,7 +37,7 @@ module.exports.addMember = async (req, res, next) => {
         // check weapons
         if ( weapons.length === 0 || weapons.length > 4) {
             return res.status(403).json({
-                message: 'Please provide 1 to 4 weapons'
+                message: 'Please provide min. 1 to max. 4 weapons'
             })
         } else {
             const newMember = await argonauteModel.create({
@@ -57,22 +56,27 @@ module.exports.addMember = async (req, res, next) => {
         }
     }
     catch (error) {
-        console.log(error)
-        res.status(500).json({ error : error })
+        next(error);
+        res.status(500).json(error)
     }
 }
 
 module.exports.getMembers = async (req, res, next)  => {
-    const crew = await argonauteModel.find()
-    res.status(200).json({crew})
+    try{
+        const crew = await argonauteModel.find();
+        res.status(200).json({crew});
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
 }
 
 module.exports.getMember = async (req, res, next)  => {
     try{
         const member = await argonauteModel.findOne({ _id : req.params.id});
-        res.status(200).json({member})
+        res.status(200).json({member});
     }
     catch (error) {
-        res.status(500).json({ error : error })
+        res.status(500).json(error);
     }
 }
