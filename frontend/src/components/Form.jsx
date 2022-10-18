@@ -2,16 +2,17 @@ import React, {useState} from 'react';
 
 const Form = () => {
 
+
     // Name
     const [inputName, setInputName] = useState('');
-    const [isValidName, setIsValidName] = useState(false);
+    const [isValidName, setIsValidName] = useState(null);
     const nameRegExp = new RegExp('(^[a-zA-Zéè -]{2,35}$)');
     const [nameIsEditing, setNameIsEditing] = useState(false);
 
     const checkNameValidity = (e) => {
         let inputValue = e.target.value
         setInputName(inputValue);
-        if (inputValue.length < 3 || !nameRegExp.test(inputValue)){
+        if ((inputValue.length < 3 || !nameRegExp.test(inputValue)) && nameIsEditing){
             setIsValidName(false);
         } else{
             setIsValidName(true);
@@ -32,13 +33,45 @@ const Form = () => {
         }
     }
 
+    // Strength 
     const [inputStrength, setInputStrength] = useState(1);
-    const [inputWeapon, setInputWeapon] = useState('unkown');
+
+    const handleStrength = (strength) => {
+        setInputStrength(strength);
+    }
+
+    // Weapons
+    const options = [
+        {value: '', text:'Choisissez une arme'},
+        {value: 'sword', text:'Epée'},
+        {value: 'shiled', text:'Bouclier'},
+        {value: 'spear', text:'Lance'},
+        {value: 'bow', text:'Arc'},
+        {value: 'unkown', text:'Non communiqué'}
+    ]
+
+    const [inputWeapon, setInputWeapon] = useState(options[0].value);
+    const [isValidWeapon, setIsValidWeapon] =useState(false);
+    const [weaponIsEditing, setWeaponIsEditing] = useState(false);
+    const handleWeaponChoice = e => {
+        setInputWeapon(e.target.value);
+        setIsValidWeapon(true);
+        setWeaponIsEditing(true)
+        if (e.target.value === ""){
+            setIsValidWeapon(false);
+        }
+    }
 
 
     // Send form
+    const [areValidInputs, setAreValidInputs] = useState(true);
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!isValidName || isValidAge || isValidWeapon){
+            setAreValidInputs(false)
+        }else{
+            setAreValidInputs(true)
+        }
     }
 
     return (
@@ -52,9 +85,9 @@ const Form = () => {
                 defaultValue={inputName}
                 onChange={(e) => checkNameValidity(e)}
                 onClick={() => setNameIsEditing(true)}
-                style={!isValidName && nameIsEditing ?{ border: "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
+                style={!nameIsEditing? {border: "3px solid transparent"} : !isValidName ?{ border: "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
             />
-            <span className='newHeroName-warning'style={!isValidName && nameIsEditing ?{ opacity: 1 } : { opacity: 0 }}>Veuillez entrez un nom correct svp (ex: Hercules)</span>
+            <span className='newHeroName-warning'style={!nameIsEditing? {opacity : 0} : !isValidName ? { opacity: 1 } : { opacity: 0 }}>Veuillez entrez un nom correct (ex: Hercules).</span>
             {/* Age */}
             <label htmlFor='newHeroAge'>Age : </label>
             <input 
@@ -65,7 +98,7 @@ const Form = () => {
                 defaultValue={inputAge}
                 onChange={(e) => checkAgeValidity(e.target.value)}
                 onClick= {() => setAgeIsEditing(true)}
-                style={!isValidAge && ageIsEditing ?{ border: "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
+                style={!ageIsEditing ? {border: "3px solid transparent"} : !isValidAge?{ border: "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
                 />
             <span className='newHeroAge-warning'style={!isValidAge && ageIsEditing ? { opacity: 1 } : { opacity: 0 }}>Un héro doit avoir entre 18 et 70 ans.</span>
             {/* Strength */}
@@ -75,16 +108,20 @@ const Form = () => {
                 min="1" max="5"
                 defaultValue={inputStrength}
                 id='newHeroStrength'
-                onChange={(e) => setInputStrength(e.target.value)}
-                />
+                onChange={(e) => handleStrength(e.target.value)}
+            />
             {/* Weapons */}
             <label htmlFor='newHeroWeapons'>Armes utilisées :</label>
-                <select name="newHeroWeapons" id="newHeroWeapons">
-                    <option value="sword">Epée</option>
-                    <option value="shiled">Bouclier</option>
-                    <option value="spear">Lance</option>
-                    <option value="bow">Arc</option>
-                    <option value="unkown" selected>Non communiqué</option>
+                <select 
+                value={inputWeapon}
+                onChange={handleWeaponChoice}
+                name="newHeroWeapons" 
+                id="newHeroWeapons"
+                style={!weaponIsEditing ? {border: "3px solid transparent"} : !isValidWeapon? { border : "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
+                >
+                {options.map(option => (
+                    <option key={option.value} value={option.value}>{option.text}</option>
+                ))}
                 </select>
 
             <button onClick={(e) => handleSubmit(e)}>Ajouter</button>

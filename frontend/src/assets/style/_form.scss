@@ -14,7 +14,7 @@ form{
         border-radius: 5px;
     }
 
-    input:focus{
+    input:focus, select:focus{
         box-shadow: none !important;
         -moz-box-shadow: none !important;
         -webkit-box-shadow: none !important;
@@ -34,6 +34,7 @@ form{
         font-family: 'Poppins', sans-serif;
     }
 
+
     button{
         width: 150px;
         margin-top: 30px;
@@ -45,7 +46,14 @@ form{
         border-radius: 20px;
         cursor: pointer;
         align-self: center;
+        padding: 5px 0;
+        transition: all .3s ease-out;
+        &:hover{
+            background-color: #eb6565;
+            transform: scale(1.1);
+        }
     }
+
     .newHeroName-warning, .newHeroAge-warning{
         font-size: 0.8rem;
         color: $color6;
