@@ -35,9 +35,9 @@ module.exports.addMember = async (req, res, next) => {
             })
         }
         // check weapons
-        if ( weapons.length === 0 || weapons.length > 4) {
+        if (typeof weapons != 'string') {
             return res.status(403).json({
-                message: 'Please provide min. 1 to max. 4 weapons'
+                message: 'Please provide a valid weapon'
             })
         } else {
             const newMember = await argonauteModel.create({

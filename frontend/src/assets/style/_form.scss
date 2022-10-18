@@ -1,0 +1,53 @@
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: $color4;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+    input{
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 10px;
+        border: transparent;
+        border-radius: 5px;
+    }
+
+    input:focus{
+        box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        outline: none !important;
+      }
+
+
+    label{
+        margin-top: 20px;
+    }
+    .label-1{
+        margin-top: 0;
+    }
+
+    select, option{
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    button{
+        width: 150px;
+        margin-top: 30px;
+        border: none;
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        background-color: $color1;
+        color: $color3;
+        border-radius: 20px;
+        cursor: pointer;
+        align-self: center;
+    }
+    .newHeroName-warning, .newHeroAge-warning{
+        font-size: 0.8rem;
+        color: $color6;
+    }
+}

@@ -16,3 +16,27 @@ body{
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
 }
+
+main{
+  max-width: 960px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2{
+    text-align: center;
+  }
+
+  .form-container{
+    display: flex;
+    width: 100%;
+    .form-left, .form-right{
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
