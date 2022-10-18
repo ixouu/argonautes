@@ -96,8 +96,11 @@ const Form = ({ welcome}) => {
         setLoading(true)
         try{
             const results = await axios.post(baseURL, data);
-            setResponse(results.data)
-            welcome(true)
+            setResponse(results.data);
+            welcome(true);
+            setInputAge(18);
+            setInputName('');
+            setInputWeapon(options[0].value);
         } catch(err){
             setError(err.message)
         } finally{

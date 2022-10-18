@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Form from "./components/Form";
 
 import heroImg from './assets/images/hero.png'
+import boatImg from './assets/images/boat.png'
 
 const App = () => {
 
@@ -24,6 +25,14 @@ const App = () => {
             <div className="form-right_welcome" style={welcomeIsVisible? {opacity : 1} : {opacity : 0}}>
               <span>Nouvel Argonaute ajouté, <br/>Bienvenu à bord !</span>
             </div>
+          </div>
+        </div>
+        <div className="form-cardContainer">
+          <div className="form-cardContainer_left">
+            <img src={boatImg} alt="image representant une galere"/>
+          </div>
+          <div className="form-cardContainer_right">
+            <h2>Membres de l'équipage</h2>
           </div>
         </div>
       </main>
