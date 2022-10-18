@@ -2,7 +2,7 @@ const argonauteModel = require('../models/argonauteSchema');
 
 module.exports.addMember = async (req, res, next) => {
     try {
-        const { name, age, strength, weapons } = req.body;
+        const { name, age, strength, weapon } = req.body;
         // check if all the informations are provided
         if (!name || !age || !strength || !weapons) {
             return res.status(403).json({
@@ -35,7 +35,7 @@ module.exports.addMember = async (req, res, next) => {
             })
         }
         // check weapons
-        if (typeof weapons != 'string') {
+        if (typeof weapon!= 'string') {
             return res.status(403).json({
                 message: 'Please provide a valid weapon'
             })
@@ -44,7 +44,7 @@ module.exports.addMember = async (req, res, next) => {
                 name: req.body.name,
                 age: req.body.age,
                 strength: req.body.strength,
-                weapons: req.body.weapons
+                weapon: req.body.weapon
             })
             res.status(201).json({
                 status: 'success',

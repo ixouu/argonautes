@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 
-const Form = () => {
-
+const Form = ({ welcome}) => {
 
     // Name
     const [inputName, setInputName] = useState('');
@@ -40,7 +40,7 @@ const Form = () => {
         setInputStrength(strength);
     }
 
-    // Weapons
+    // Weapon
     const options = [
         {value: '', text:'Choisissez une arme'},
         {value: 'sword', text:'Epée'},
@@ -63,14 +63,45 @@ const Form = () => {
     }
 
 
-    // Send form
+    // handle submit
     const [areValidInputs, setAreValidInputs] = useState(true);
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!isValidName || isValidAge || isValidWeapon){
-            setAreValidInputs(false)
+        if(!isValidName || !isValidAge || !isValidWeapon){
+            setAreValidInputs(false);
+            setNameIsEditing(true);
+            setAgeIsEditing(true);
+            setWeaponIsEditing(true);
+            return;
         }else{
-            setAreValidInputs(true)
+            setAreValidInputs(true);
+        }
+        if (areValidInputs){
+            const data = {
+                name : inputName,
+                age: inputAge,
+                strength : inputStrength,
+                weapon : inputWeapon
+            }
+            sendData(data)
+        }
+    }
+    // Send data
+    const [response, setResponse] = useState(undefined);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const baseURL = 'http://localhost:5000/api/v1/argonaute/add'
+
+    const sendData = async(data) => {
+        setLoading(true)
+        try{
+            const results = await axios.post(baseURL, data);
+            setResponse(results.data)
+            welcome(true)
+        } catch(err){
+            setError(err.message)
+        } finally{
+            setLoading(false)
         }
     }
 
@@ -110,8 +141,8 @@ const Form = () => {
                 id='newHeroStrength'
                 onChange={(e) => handleStrength(e.target.value)}
             />
-            {/* Weapons */}
-            <label htmlFor='newHeroWeapons'>Armes utilisées :</label>
+            {/* Weapon */}
+            <label htmlFor='newHeroWeapons'>Arme utilisée:</label>
                 <select 
                 value={inputWeapon}
                 onChange={handleWeaponChoice}
@@ -124,7 +155,9 @@ const Form = () => {
                 ))}
                 </select>
 
-            <button onClick={(e) => handleSubmit(e)}>Ajouter</button>
+            <button onClick={(e) => handleSubmit(e)}>{loading? 'Chargement...' : 'Ajouter'}</button>
+            {!areValidInputs && <span className='newHeroForm-warning'>Veuillez remplir tous les champs du formulaire.</span>}
+            {error && <span className='newHeroForm-warning'>Erreur : {error}.</span>}
         </form>
     );
 }

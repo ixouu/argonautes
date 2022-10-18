@@ -37,6 +37,31 @@ main{
       align-items: center;
       justify-content: center;
     }
+    .form-right{
+      position: relative;
+      .form-right_welcome{
+        position: absolute;
+        top: 30px;
+        right: 50px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgb(170, 248, 156);
+        transition: all .3s ease-out;
+        opacity: 0;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        &::before{
+          content : '';
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          bottom: -7px;
+          left: 50px;
+          background-color: rgb(170, 248, 156);
+          transform: rotate(-45deg);
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+      }
+    }
   }
 }
 

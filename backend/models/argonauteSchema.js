@@ -18,7 +18,7 @@ const argonauteSchema = new mongoose.Schema(
             type: Number,
             required : [true, 'An argonaute must have a strength']
         },
-        weapons : {
+        weapon : {
             type: String,
             required : [true, 'An argonaute must come with his weapons']
         }
