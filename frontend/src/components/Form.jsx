@@ -137,6 +137,13 @@ const Form = ({ welcome}) => {
             <span className='newHeroAge-warning'style={!isValidAge && ageIsEditing ? { opacity: 1 } : { opacity: 0 }}>Un héro doit avoir entre 18 et 70 ans.</span>
             {/* Strength */}
             <label htmlFor='newHeroStrength'>Force : </label>
+            <p>
+                <span className='strength-details'style={{ backgroundColor : "#8C031C"}}>Faible</span>
+                <span className='strength-details'style={{ backgroundColor : "#E85627"}}>Moyenne</span>
+                <span className='strength-details'style={{ backgroundColor : "#FF7A29"}}>Elevée</span>
+                <span className='strength-details'style={{ backgroundColor : "#30700D"}}>Héroïque</span>
+                <span className='strength-details'style={{ backgroundColor : "#BF8211"}}>Légendaire</span>
+            </p>
             <input 
                 type="range" 
                 min="1" max="5"

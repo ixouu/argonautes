@@ -11,6 +11,7 @@ article{
     color: $color3;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
     h4{
         margin: 0;
         font-weight: 500;
@@ -23,5 +24,4 @@ article{
     border: 0;
     color: $color3;
     font-size: 1.3rem;
-    cursor: pointer;
 }
