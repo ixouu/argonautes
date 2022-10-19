@@ -1,0 +1,30 @@
+.hero-modal{
+    width: 30%;
+    height: 30%;
+    background-color: $color3;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-modal_close{
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background-color: transparent;
+    color: $color3 ;
+    font-size: 45px;
+    cursor: pointer;
+    transition: all .3s ease-out;
+    border: none;
+
+    &:hover {
+        color: $color6;
+    }
+}
