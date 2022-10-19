@@ -70,13 +70,3 @@ module.exports.getMembers = async (req, res, next)  => {
         res.status(500).json(error);
     }
 }
-
-module.exports.getMember = async (req, res, next)  => {
-    try{
-        const member = await argonauteModel.findOne({ _id : req.params.id});
-        res.status(200).json({member});
-    }
-    catch (error) {
-        res.status(500).json(error);
-    }
-}

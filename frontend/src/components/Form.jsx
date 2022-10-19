@@ -93,7 +93,6 @@ const Form = ({ welcome}) => {
     const baseURL = 'http://localhost:5000/api/v1/argonaute/add'
 
     const sendData = async(data) => {
-        console.log(typeof inputAge)
         setLoading(true)
         try{
             const results = await axios.post(baseURL, data);
