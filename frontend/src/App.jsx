@@ -21,7 +21,7 @@ const App = () => {
 
   useEffect(() =>{
     fetchData();
-  },[baseURL])
+  },[baseURL, welcomeIsVisible])
 
   const fetchData = async() => {
     try{
@@ -58,7 +58,7 @@ const App = () => {
             <h2>Membres de l'équipage</h2>
             <div className="crewList">
               {loading ? 
-                <span>LOADING...</span>
+                <span>Chargement..</span>
                 : error ?
                   <span>{error}</span> 
                   : response.crew.map( function(el) { return <Card key={el._id} name={el.name} age={el.age} strength ={el.strength} weapon={el.weapon}/>})

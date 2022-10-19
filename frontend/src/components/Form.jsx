@@ -29,7 +29,7 @@ const Form = ({ welcome}) => {
             setIsValidAge(false)
         } else{
             setIsValidAge(true);
-            setInputAge(age);
+            setInputAge(parseInt(age));
         }
     }
 
@@ -37,7 +37,7 @@ const Form = ({ welcome}) => {
     const [inputStrength, setInputStrength] = useState(1);
 
     const handleStrength = (strength) => {
-        setInputStrength(strength);
+        setInputStrength(parseInt(strength));
     }
 
     // Weapon
@@ -93,16 +93,25 @@ const Form = ({ welcome}) => {
     const baseURL = 'http://localhost:5000/api/v1/argonaute/add'
 
     const sendData = async(data) => {
+        console.log(typeof inputAge)
         setLoading(true)
         try{
             const results = await axios.post(baseURL, data);
             setResponse(results.data);
             welcome(true);
+            const timer = setTimeout(() =>{
+                welcome(false)
+            }, 5000)
             setInputAge(18);
             setInputName('');
             setInputWeapon(options[0].value);
+            return() => clearTimeout(timer);
         } catch(err){
-            setError(err.message)
+            if (err.response !== undefined){
+                setError(err.response.data.message)
+            }else {
+                setError(err.message)
+            }
         } finally{
             setLoading(false)
         }
@@ -117,6 +126,7 @@ const Form = ({ welcome}) => {
                 placeholder='Charalampos' 
                 id='newHeroName'
                 defaultValue={inputName}
+                value={inputName}
                 onChange={(e) => checkNameValidity(e)}
                 onClick={() => setNameIsEditing(true)}
                 style={!nameIsEditing? {border: "3px solid transparent"} : !isValidName ?{ border: "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
@@ -130,6 +140,7 @@ const Form = ({ welcome}) => {
                 min="18" max="70" 
                 id='newHeroAge'
                 defaultValue={inputAge}
+                value={inputAge}
                 onChange={(e) => checkAgeValidity(e.target.value)}
                 onClick= {() => setAgeIsEditing(true)}
                 style={!ageIsEditing ? {border: "3px solid transparent"} : !isValidAge?{ border: "3px solid rgb(197, 23, 23)" } : { border : "3px solid rgb(16, 118, 16)"}}
@@ -148,6 +159,7 @@ const Form = ({ welcome}) => {
                 type="range" 
                 min="1" max="5"
                 defaultValue={inputStrength}
+                value={inputStrength}
                 id='newHeroStrength'
                 onChange={(e) => handleStrength(e.target.value)}
             />
@@ -155,6 +167,7 @@ const Form = ({ welcome}) => {
             <label htmlFor='newHeroWeapons'>Arme utilisée:</label>
                 <select 
                 value={inputWeapon}
+                defaultValue={inputWeapon}
                 onChange={handleWeaponChoice}
                 name="newHeroWeapons" 
                 id="newHeroWeapons"
