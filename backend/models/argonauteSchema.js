@@ -20,7 +20,7 @@ const argonauteSchema = new mongoose.Schema(
         },
         weapon : {
             type: String,
-            required : [true, 'An argonaute must come with his weapons']
+            required : [true, 'An argonaute must come with his weapon']
         }
 })
 

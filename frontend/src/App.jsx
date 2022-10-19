@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -6,10 +7,32 @@ import Form from "./components/Form";
 
 import heroImg from './assets/images/hero.png'
 import boatImg from './assets/images/boat.png'
+import Card from "./components/Card";
 
 const App = () => {
 
-  const [welcomeIsVisible, setWelcomeIsVisible] = useState(false)
+  const [welcomeIsVisible, setWelcomeIsVisible] = useState(false);
+
+  // DATA
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const baseURL = 'http://localhost:5000/api/v1/argonaute/crew';
+
+  useEffect(() =>{
+    fetchData();
+  },[baseURL])
+
+  const fetchData = async() => {
+    try{
+      const results = await axios.get(baseURL)
+      setResponse(results.data)
+    } catch(err){
+      setError(err.message);
+  } finally{
+      setLoading(false);
+  }
+  }
 
   return (
     <div className="App">
@@ -33,6 +56,14 @@ const App = () => {
           </div>
           <div className="form-cardContainer_right">
             <h2>Membres de l'équipage</h2>
+            <div className="crewList">
+              {loading ? 
+                <span>LOADING...</span>
+                : error ?
+                  <span>{error}</span> 
+                  : response.crew.map( function(el) { return <Card key={el._id} name={el.name} age={el.age} strength ={el.strength} weapon={el.weapon}/>})
+              }
+            </div>
           </div>
         </div>
       </main>

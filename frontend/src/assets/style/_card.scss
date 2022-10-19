@@ -1,0 +1,27 @@
+article{
+    width: 160px;
+    max-width: 160px;
+    height: 40px;
+    background-color: $color1;
+    padding: 15px 5px 15px 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    color: $color3;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    h4{
+        margin: 0;
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
+}
+
+.article-button{
+    background-color: transparent;
+    border: 0;
+    color: $color3;
+    font-size: 1.3rem;
+    cursor: pointer;
+}

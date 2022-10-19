@@ -4,7 +4,7 @@ module.exports.addMember = async (req, res, next) => {
     try {
         const { name, age, strength, weapon } = req.body;
         // check if all the informations are provided
-        if (!name || !age || !strength || !weapons) {
+        if (!name || !age || !strength || !weapon) {
             return res.status(403).json({
                 message: 'Please provide all necessary informations'
             })
@@ -56,8 +56,8 @@ module.exports.addMember = async (req, res, next) => {
         }
     }
     catch (error) {
-        next(error);
         res.status(500).json(error)
+        console.log(error)
     }
 }
 
