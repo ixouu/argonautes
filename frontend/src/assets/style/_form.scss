@@ -1,0 +1,73 @@
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: $color4;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    min-height: 550px;
+    
+    input{
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 10px;
+        border: transparent;
+        border-radius: 5px;
+    }
+
+    input:focus, select:focus{
+        box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        outline: none !important;
+      }
+
+
+    label{
+        margin-top: 20px;
+    }
+    .label-1{
+        margin-top: 0;
+    }
+
+    select, option{
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+    }
+
+
+    button{
+        width: 150px;
+        margin-top: 30px;
+        border: none;
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        background-color: $color1;
+        color: $color3;
+        border-radius: 20px;
+        cursor: pointer;
+        align-self: center;
+        padding: 5px 0 ;
+        transition: all .3s ease-out;
+        border: 1px solid $color3;
+        &:hover{
+            background-color: #eb6565;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+    }
+    .newHeroForm-warning{
+        padding-top: 10px;
+    }
+    .newHeroName-warning, .newHeroAge-warning, .newHeroForm-warning{
+        font-size: 0.8rem;
+        color: $color6;
+    }
+    .strength-details{
+        color :$color3;
+        font-size: 0.8rem;
+        padding: 5px 5px;
+        font-weight: 500;
+        border-radius: 5px;
+        margin: 0 1px;
+    }
+}

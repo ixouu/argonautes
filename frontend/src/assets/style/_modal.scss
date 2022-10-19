@@ -1,0 +1,49 @@
+.hero-modal{
+    width: 30%;
+    height: 30%;
+    background-color: $color3;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    span{
+        display: inline-block;
+    }
+    img{
+        margin-top: 10px;
+    }
+    .hero-modal_strength{
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: $color3;
+        font-weight: 500;
+    }
+    .solider-img{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 120px;
+    }
+}
+
+.hero-modal_close{
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background-color: transparent;
+    color: $color3 ;
+    font-size: 45px;
+    cursor: pointer;
+    transition: all .3s ease-out;
+    border: none;
+
+    &:hover {
+        color: $color6;
+    }
+}
