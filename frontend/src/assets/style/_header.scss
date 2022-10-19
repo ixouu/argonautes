@@ -1,0 +1,17 @@
+header{
+    display: flex;
+    justify-content: center;
+    background-color: $color2;
+    padding: 2em;
+    align-items: center;
+
+    img{
+        max-width: 96px;
+        height: fit-content;
+    }
+
+    h1{
+        font-size: $h1Size;
+        padding-left: 10px;
+    }
+}

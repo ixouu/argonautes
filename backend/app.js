@@ -44,6 +44,5 @@ mongoose.connection.on("error", (err) => {
 // routes
 app.post('/api/v1/argonaute/add',  argonaute.addMember);
 app.get('/api/v1/argonaute/crew', argonaute.getMembers);
-app.get('/api/v1/argonaute/crew/:id', argonaute.getMember);
 
 module.exports = app;
