@@ -22,16 +22,18 @@ ___
 
 ## :wrench: How to start the project
 1. Clone the repo or download the zip file.
-2. Install `Node.js`(http://nodejs.org/).
-3. Open your terminal.
-4. Switch to the `/backend` folder.
-5. Install the project dependencies `npm install`.
-6. If the file .env is provided, add it to the root of `/backend` folder.
-7. At this point you can run the Node server with the commande `npm start`.
-8. Switch to the `/frontend` folder.
-9. Install the frontend dependencies `npm install`.
-10. Run React with the following commande `npm start`.
-11. Open your favorite browser and at this point you should be able to try the App with the following URL http://localhost:3000/ :rocket:
+2. At the root of the folder add the .env file and add the given variables to be able to connect yourself to the DB.
+3. `A l'attention de l'examinateur WildCodeSchool :`(PORT=5000 DB_USER_PASS=argonaute1234:argo1234)
+4. Install `Node.js`(http://nodejs.org/).
+5. Open your terminal.
+6. Switch to the `/backend` folder.
+7. Install the project dependencies `npm install`.
+8. If the file .env is provided, add it to the root of `/backend` folder.
+9. At this point you can run the Node server with the commande `npm start`.
+10. Switch to the `/frontend` folder.
+11. Install the frontend dependencies `npm install`.
+12. Run React with the following commande `npm start`.
+13. Open your favorite browser and at this point you should be able to try the App with the following URL http://localhost:3000/ :rocket:
 
 
 ___
